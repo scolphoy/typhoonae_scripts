@@ -10,7 +10,7 @@ rm bootstrap.py;
 wget http://downloads.buildout.org/2/bootstrap.py;
 
 echo "Applying patches to config files";
-wget https://raw.github.com/scolphoy/typhoonae_scripts/master/patches/typhoon_ubuntu.patch;
+wget https://raw.github.com/scolphoy/typhoonae_scripts/master/patches/typhoon_ubuntu_12.04.patch;
 patch -p1 < typhoon_ubuntu.patch;
 
 echo "Building TyphoonAE.. (yes, this is it)";
