@@ -1,0 +1,35 @@
+
+sudo apt-get install -y mercurial g++ libmysql++-dev libncurses5-dev libssl-dev python-dev python-setuptools libexpat1-dev gettext xsltproc erlang-nox erlang-dev erlang-src libcloog-ppl0;
+
+echo "Checking out newest sources for TyphoonAE..";
+hg clone https://code.google.com/p/typhoonae;
+cd typhoonae;
+
+echo "Updating to a more recent version of bootstrap.py ...";
+rm bootstrap.py;
+wget http://downloads.buildout.org/2/bootstrap.py;
+
+echo "Applying patches to config files";
+wget https://raw.github.com/scolphoy/typhoonae_scripts/master/typhoon_ubuntu.patch;
+patch -p1 < typhoon_ubuntu.patch;
+
+echo "Building TyphoonAE.. (yes, this is it)";
+python bootstrap.py;
+until bin/buildout; do echo "An error occured, possibly while fetching python packets, retrying in 5min."; sleep 300; done;
+
+echo "Creating directory for log files and an empty container for Celery config..";
+mkdir -p var/log;
+touch etc/celeryconfig.py;
+echo "Done."
+echo "";
+
+echo "TyphoonAE is now installed.";
+echo "You should now be able to install your apps using one of the following:";
+echo "1) ./bin/apptool /path/to/app/folder/";
+echo "2) ./bin/appcfg --insecure --server=localhost:9190 update /path/to/app/folder/";
+echo "Start the services by running './bin/supervisord' and manage them using './bin/supervisorctl'";
+echo "appcfg service: http://localhost:9190";
+echo "Supervisor web-interface: http://localhost:9001";
+echo "Application default url: http://localhost:8080";
+echo "For running multiple apps, see https://code.google.com/p/typhoonae/wiki/MultipleApps";
+

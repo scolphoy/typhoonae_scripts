@@ -1,0 +1,25 @@
+diff -purN old/./buildout.cfg new/./buildout.cfg
+--- old/buildout.cfg	2013-06-10 04:55:54.384373827 -0700
++++ new/buildout.cfg	2013-06-10 04:56:24.160374567 -0700
+@@ -40,7 +40,8 @@ url = http://www.monkey.org/~provos/libe
+ 
+ [memcached]
+ recipe = zc.recipe.cmmi
+-url = http://memcached.googlecode.com/files/memcached-1.4.5.tar.gz
++#url = http://memcached.googlecode.com/files/memcached-1.4.5.tar.gz
++url = http://memcached.googlecode.com/files/memcached-1.4.15.tar.gz
+ extra_options = --with-libevent=${libevent:location} --bindir=${buildout:directory}/bin
+ environment =
+     CFLAGS=-I${libevent:location}/include
+diff -purN old/etc/versions.cfg new/etc/versions.cfg
+--- old/etc/versions.cfg	2013-06-10 04:55:54.384373827 -0700
++++ new/etc/versions.cfg	2013-06-10 04:56:41.880374620 -0700
+@@ -28,7 +28,7 @@ rod.recipe.ejabberd = 1.1.4
+ rod.recipe.mongodb = 1.2.2
+ rod.recipe.rabbitmq = 2.0.0
+ setuptools = 0.6.c11
+-simplejson = 2.2.1
++simplejson = 2.3.2
+ sqlalchemy = 0.7.2
+ superlance = 0.6
+ supervisor = 3.0a10
