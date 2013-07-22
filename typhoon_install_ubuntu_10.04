@@ -1,4 +1,3 @@
-
 sudo apt-get install -y mercurial g++ libmysql++-dev libncurses5-dev libssl-dev python-dev python-setuptools libexpat1-dev gettext xsltproc erlang-nox erlang-dev erlang-src libcloog-ppl0;
 
 echo "Checking out newest sources for TyphoonAE..";
@@ -11,7 +10,7 @@ wget http://downloads.buildout.org/2/bootstrap.py;
 
 echo "Applying patches to config files";
 wget https://raw.github.com/scolphoy/typhoonae_scripts/master/patches/typhoon_ubuntu_10.04.patch;
-patch -p1 < typhoon_ubuntu.patch;
+patch -p1 < typhoon_ubuntu_10.04.patch;
 
 echo "Building TyphoonAE.. (yes, this is it)";
 python bootstrap.py;
